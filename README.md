@@ -16,12 +16,12 @@ Este projeto tem como objetivo fornecer uma interface moderna e intuitiva para c
 
 ## 📌 Funcionalidades
 
--✅ Cadastro de usuários com validação robusta.
--✅ Sistema de login e confirmação de senha.
--✅ Envio automático de e-mails 📩.
--✅ Interface moderna e responsiva com Bootstrap.
--✅ Banco de dados gerenciado com Entity Framework.
--✅ Feedback dinâmico para o usuário (mensagens de erro e sucesso).
+- ✅ Cadastro de usuários com validação robusta.
+- ✅ Sistema de login e confirmação de senha.
+- ✅ Envio automático de e-mails 📩.
+- ✅ Interface moderna e responsiva com Bootstrap.
+- ✅ Banco de dados gerenciado com Entity Framework.
+- ✅ Feedback dinâmico para o usuário (mensagens de erro e sucesso).
 
 ## 📈 Melhorias Futuras
 
