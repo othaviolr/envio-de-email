@@ -1,15 +1,15 @@
 ﻿@model EmailModel
 
-@if(TempData["MensagemErro"] != null)
+@if (TempData["MensagemErro"] != null)
 {
-    <div class="alert alert-danger text-dark" role="alert">
+    <div class="alert alert-danger text-dark fw-bold shadow-sm rounded-3 p-3" role="alert">
         @TempData["MensagemErro"]
     </div>
 }
 
 @if (TempData["MensagemSucesso"] != null)
 {
-    <div class="alert alert-success text-dark" role="alert">
+    <div class="alert alert-success text-dark fw-bold shadow-sm rounded-3 p-3" role="alert">
         @TempData["MensagemSucesso"]
     </div>
 }
@@ -18,56 +18,150 @@
     Layout = "_Layout";
 }
 
+<style>
+    body {
+        background-color: #121212;
+        color: #fff;
+    }
+
+    .custom-card {
+        background: linear-gradient(145deg, #1e1e1e, #292929);
+        box-shadow: 5px 5px 15px #0d0d0d, -5px -5px 15px #323232;
+        border-radius: 15px;
+        padding: 25px;
+    }
+
+    .form-control {
+        background-color: #fff;
+        color: #000;
+        border: 2px solid #555;
+        border-radius: 10px;
+        transition: all 0.3s ease-in-out;
+    }
+
+        .form-control::placeholder {
+            color: #aaa;
+        }
+
+        .form-control:focus {
+            border-color: #daa520;
+            box-shadow: 0 0 10px #daa520;
+            background-color: #333;
+            color: #fff;
+        }
+
+    .btn-custom {
+        flex: 1;
+        padding: 12px;
+        font-size: 18px;
+        font-weight: bold;
+        border-radius: 10px;
+        transition: 0.3s;
+    }
+
+    .btn-warning {
+        background: #FAA652;
+        color: #fff;
+        border: none;
+    }
+
+        .btn-warning:hover {
+            background: #FABF52;
+        }
+
+    .btn-danger {
+        background: #ff4c4c;
+        border: none;
+    }
+
+        .btn-danger:hover {
+            background: #ff1a1a;
+        }
+
+    .btn-success {
+        background: #4caf50;
+        border: none;
+    }
+
+        .btn-success:hover {
+            background: #45a049;
+        }
+
+    .btn-info {
+        background: #17a2b8;
+        border: none;
+    }
+
+        .btn-info:hover {
+            background: #138496;
+        }
+
+    .button-container {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        margin-top: 20px;
+    }
+</style>
 
 
-@if(Model != null)
+@if (Model != null)
 {
     <div class="container text-center mt-5">
-        <form method="post" asp-controller="Email" asp-action="EnviarEmail">
+        <div class="custom-card">
+            <h2 class="mb-4 fw-bold text-warning">Enviar Email</h2>
 
-            <input type="hidden" asp-for="Id"/>
+            <form method="post" asp-controller="Email" asp-action="EnviarEmail">
 
+                <input type="hidden" asp-for="Id" />
 
-            <div class="mb-1">
-                <label class="form-label">Email:</label>
-                <input type="email" class="form-control" asp-for="Email" disabled/>
-            </div>
+                <div class="mb-3 text-start">
+                    <label class="form-label fw-bold text-light">Email:</label>
+                    <input type="email" class="form-control shadow-sm rounded-3" asp-for="Email" disabled />
+                </div>
 
-            <div class="mb-1">
-                <label class="form-label">Nome:</label>
-                <input type="text" class="form-control" asp-for="Nome" disabled />
-            </div>
+                <div class="mb-3 text-start">
+                    <label class="form-label fw-bold text-light">Nome:</label>
+                    <input type="text" class="form-control shadow-sm rounded-3" asp-for="Nome" disabled />
+                </div>
 
-            <div class="mb-1">
-                <label class="form-label">Data de Registro:</label>
-                <input type="text" class="form-control" asp-for="DataDeRegistro" disabled />
-            </div>
+                <div class="mb-3 text-start">
+                    <label class="form-label fw-bold text-light">Data de Registro:</label>
+                    <input type="text" class="form-control shadow-sm rounded-3" asp-for="DataDeRegistro" disabled />
+                </div>
 
+                <input type="hidden" asp-for="Email" name="enderecoEmail" />
 
-            <input type="hidden" asp-for="Email" name="enderecoEmail"/>
+                <div class="mb-4 text-start">
+                    <label class="form-label fw-bold text-light">Assunto do Email:</label>
+                    <input type="text" class="form-control shadow-sm rounded-3" name="assuntoEmail" placeholder="Digite o assunto" />
+                </div>
 
-            <div class="mb-5">
-                <label class="form-label">Assunto Email:</label>
-                <input type="text" class="form-control" name="assuntoEmail" />
-            </div>
+                <div class="mb-4 text-start">
+                    <label class="form-label fw-bold text-light">Mensagem do Email:</label>
+                    <textarea class="form-control shadow-sm rounded-3" rows="4" name="textoEmail" placeholder="Digite sua mensagem"></textarea>
+                </div>
 
-            <div class="mb-5">
-                <label class="form-label">Mensagem Email:</label>
-                <textarea  class="form-control" name="textoEmail"></textarea>
-            </div>
+                <div class="button-container">
+                    <button type="submit" class="btn btn-warning neon-border btn-custom">Enviar Email</button>
 
-            <button type="submit" class="btn btn-warning w-75 mb-2">Enviar Email</button>
+                    @if (Model.Status == true)
+                    {
+                        <a class="btn btn-danger btn-custom" asp-action="ModificarStatus" asp-controller="Email" asp-route-id="@Model.Id">
+                            Inativar Registro
+                        </a>
+                    }
+                    else
+                    {
+                        <a class="btn btn-success btn-custom" asp-action="ModificarStatus" asp-controller="Email" asp-route-id="@Model.Id">
+                            Ativar Registro
+                        </a>
+                    }
 
-            @if(Model.Status == true)
-            {
-                <a class="btn btn-danger w-75 mb-2" style="font-size:16px" asp-action="ModificarStatus" asp-controller="Email" asp-route-id="@Model.Id">Inativar Registro</a>
-            }
-            else
-            {
-                <a class="btn btn-success w-75 mb-2" style="font-size:16px" asp-action="ModificarStatus" asp-controller="Email" asp-route-id="@Model.Id">Ativar Registro</a>
-            }
-            <a class="btn btn-info w-75" style="font-size:16px" asp-action="Index" asp-controller="Email">Voltar</a>
+                    <a class="btn btn-info btn-custom" asp-action="Index" asp-controller="Email">Voltar</a>
+                </div>
 
-        </form>
+            </form>
+        </div>
     </div>
 }

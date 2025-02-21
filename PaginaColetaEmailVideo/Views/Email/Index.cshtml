@@ -14,50 +14,144 @@
     </div>
 }
 
-
 @{
     Layout = "_Layout";
 }
 
+<div class="container py-5">
+    <!-- Formulário de pesquisa -->
+    <div class="text-center mb-5">
+        <form method="get" asp-action="Index" asp-controller="Email" class="d-flex justify-content-center">
+            <input name="pesquisar" class="form-control w-50 mx-2 search-input" placeholder="Pesquisar..." />
+            <button type="submit" class="btn btn-dourado w-auto py-2 px-4 search-button">Pesquisar</button>
+        </form>
+    </div>
 
-
-<div class="  py-5">
-    <div class="container"
-        <div class="text-center mb-5">
-            <form method="get" asp-action="Index" asp-controller="Email" class="d-flex justify-content-center">
-                <input name="pesquisar" class="form-control w-50 mx-2" style="border:1px solid gray; border-radius:10px"/>
-                <button type="submit" class="btn btn-primary w-10">Pesquisar</button>
-            </form>
-        </div>
-
-        <div class="row row-cls-1 row-cols-sm-2 g-0 d-flex justify-content-center mt-5">
-            @if(Model != null)
+    <!-- Lista de emails -->
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center mt-4">
+        @if (Model != null)
+        {
+            @if (Model.Count() > 0)
             {
-                @if(Model.Count() > 0)
+                @foreach (var email in Model)
                 {
-                    @foreach(var email in Model)
-                    {
-                        <div class="card" style="width:15rem; margin-left:20px; margin-bottom:20px">
+                    <div class="col">
+                        <div class="card shadow-lg border-0 email-card">
                             <div class="card-body text-center">
-                                @if(email.Status == true)
+                                @if (email.Status)
                                 {
-                                    <i class="bi bi-envelope text-center" style="font-size:50px; color: forestgreen"></i>
+                                    <i class="bi bi-envelope text-center email-status-icon" style="font-size: 50px; color: #ffffff;"></i>
                                 }
                                 else
                                 {
-                                    <i class="bi bi-envelope text-center" style="font-size:50px; color: darkred"></i>
+                                    <i class="bi bi-envelope text-center email-status-icon" style="font-size: 50px; color: darkred;"></i>
                                 }
 
-                                <h5 class="card-title">@email.Nome</h5>
-                                <p class="card-title">@email.Email</p>
-                                <p class="card-text">@email.DataDeRegistro.ToString("dd/MM/yyyy")</p>
-                                <a class="btn btn-info w-100" style="font-size:16px; color:black; font-weight: bold" asp-action="DetalhesEmail" asp-controller="Email" asp-route-id="@email.Id">DETALHES</a>
+                                <h5 class="card-title email-title">@email.Nome</h5>
+                                <p class="card-text email-text">@email.Email</p>
+                                <p class="card-text email-date">@email.DataDeRegistro.ToString("dd/MM/yyyy")</p>
+                                <a class="btn btn-dourado w-100 email-button" asp-action="DetalhesEmail" asp-controller="Email" asp-route-id="@email.Id">DETALHES</a>
                             </div>
                         </div>
-                    }
+                    </div>
                 }
             }
-        </div>
-
-    </divc>
+            else
+            {
+                <p class="text-center">Nenhum email encontrado.</p>
+            }
+        }
+        else
+        {
+            <p class="text-center">Erro ao carregar os emails.</p>
+        }
+    </div>
 </div>
+
+<!-- CSS para o design moderno e translúcido -->
+<style>
+    /* Estilos para o formulário de pesquisa */
+    .search-input {
+        background: rgba(255, 255, 255, 0.3); /* Transparente sem dourado */
+        color: white;
+        border: 2px solid rgba(255, 255, 255, 0.6); /* Bordas discretas */
+        border-radius: 30px;
+        padding: 10px 20px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        transition: background 0.3s ease, border-color 0.3s ease;
+    }
+
+        .search-input:focus {
+            background: rgba(255, 255, 255, 0.5);
+            border-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+    .search-button {
+        background: #cba93d; /* Dourado mais suave */
+        border-radius: 30px;
+        font-weight: bold;
+        color: black;
+        transition: all 0.3s ease-in-out;
+    }
+
+        .search-button:hover {
+            background: #a68829; /* Tom mais escuro de dourado */
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+    /* Estilos do card */
+    .email-card {
+        background: #2e2e2e;
+        color: #f0f0f0;
+        border-radius: 20px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .email-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+    .email-status-icon {
+        transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+        .email-status-icon:hover {
+            transform: scale(1.2);
+            color: #fff;
+            text-shadow: 0 0 15px #fff, 0 0 30px #cba93d, 0 0 45px #cba93d;
+        }
+
+    .email-title {
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #cba93d; /* Dourado suave */
+    }
+
+    .email-text {
+        font-size: 1rem;
+        color: #ccc;
+    }
+
+    .email-date {
+        font-size: 0.9rem;
+        color: #bbb;
+    }
+
+    .email-button {
+        font-weight: bold;
+        background-color: #cba93d; /* Dourado mais suave */
+        color: black;
+        border-radius: 25px;
+        transition: all 0.3s ease;
+    }
+
+        .email-button:hover {
+            background-color: #a68829; /* Tom mais escuro de dourado */
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+</style>

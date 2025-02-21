@@ -1,18 +1,16 @@
 ﻿@using PaginaColetaEmailVideo.Dto
 @model UsuarioCriacaoDto
 
-
-
 @if (TempData["MensagemErro"] != null)
 {
-    <div class="alert alert-danger text-dark" role="alert">
+    <div class="alert alert-danger text-dark fw-bold shadow-sm rounded-3 p-3" role="alert">
         @TempData["MensagemErro"]
     </div>
 }
 
 @if (TempData["MensagemSucesso"] != null)
 {
-    <div class="alert alert-success text-dark" role="alert">
+    <div class="alert alert-success text-dark fw-bold shadow-sm rounded-3 p-3" role="alert">
         @TempData["MensagemSucesso"]
     </div>
 }
@@ -21,37 +19,99 @@
     Layout = "_Layout";
 }
 
+<style>
+    body {
+        background-color: #121212;
+        color: #fff;
+    }
 
+    .container {
+        max-width: 500px;
+        margin: auto;
+    }
 
+    .form-label {
+        font-weight: bold;
+        color: #daa520;
+    }
+
+    .form-control {
+        background-color: #1e1e1e;
+        color: #fff;
+        border: 2px solid #555;
+        border-radius: 8px;
+        padding: 10px;
+        transition: all 0.3s ease-in-out;
+    }
+
+        .form-control::placeholder {
+            color: #aaa;
+        }
+
+        .form-control:focus {
+            border-color: #daa520;
+            box-shadow: 0 0 10px #daa520;
+            background-color: #333;
+            color: #fff; /* Garante que o texto digitado seja branco */
+        }
+
+    .btn-custom {
+        padding: 10px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 8px;
+        transition: 0.3s;
+    }
+
+    .btn-warning {
+        background: #FAA652;
+        color: #fff;
+        border: none;
+    }
+
+        .btn-warning:hover {
+            background: #FABF52;
+        }
+
+    .button-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 20px;
+    }
+</style>
 
 <div class="container mt-5">
+    <h2 class="text-center fw-bold text-warning mb-4">Cadastro de Usuário</h2>
     <form method="post" asp-action="Cadastrar" asp-controller="Usuario">
 
         <div class="mb-3">
-            <label>Usuário:</label>
-            <input type="text" class="form-control" asp-for="Usuario"/>
+            <label class="form-label">Usuário:</label>
+            <input type="text" class="form-control" asp-for="Usuario" placeholder="Digite seu usuário" />
             <span asp-validation-for="Usuario" class="text-danger"></span>
         </div>
 
         <div class="mb-3">
-            <label>Email:</label>
-            <input type="email" class="form-control" asp-for="Email" />
+            <label class="form-label">Email:</label>
+            <input type="email" class="form-control" asp-for="Email" placeholder="Digite seu email" />
             <span asp-validation-for="Email" class="text-danger"></span>
         </div>
 
         <div class="mb-3">
-            <label>Senha:</label>
-            <input type="password" class="form-control" asp-for="Senha" />
+            <label class="form-label">Senha:</label>
+            <input type="password" class="form-control" asp-for="Senha" placeholder="Digite sua senha" />
             <span asp-validation-for="Senha" class="text-danger"></span>
         </div>
 
         <div class="mb-3">
-            <label>Confirma Senha:</label>
-            <input type="password" class="form-control" asp-for="ConfirmaSenha" />
+            <label class="form-label">Confirma Senha:</label>
+            <input type="password" class="form-control" asp-for="ConfirmaSenha" placeholder="Confirme sua senha" />
             <span asp-validation-for="ConfirmaSenha" class="text-danger"></span>
         </div>
 
-        <button type="submit" class="btn btn-success text-center  w-100 mb-3" style="color:black; font-weight: bold">Cadastrar</button>
-        <a class="btn btn-info text-center w-100" style="color:black; font-weight: bold" asp-controller="Email" asp-action="Index">Voltar</a>
+        <div class="button-container">
+            <button type="submit" class="btn btn-warning btn-custom">Cadastrar</button>
+            <a class="btn btn-info btn-custom" asp-controller="Email" asp-action="Index">Voltar</a>
+        </div>
     </form>
 </div>

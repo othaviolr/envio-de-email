@@ -5,39 +5,105 @@
     Layout = "_LayoutDeslogada";
 }
 
+<style>
+    body {
+        background-color: #121212;
+        color: #fff;
+    }
 
+    .login-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start; /* Alinhando mais para cima */
+        min-height: 100vh;
+        padding-top: 10vh; /* Reduzi o espaçamento superior */
+    }
 
-@if (TempData["MensagemErro"] != null)
-{
-    <div class="alert alert-danger text-dark" role="alert">
-        @TempData["MensagemErro"]
+    .login-box {
+        background: linear-gradient(145deg, #1e1e1e, #292929);
+        box-shadow: 5px 5px 15px #0d0d0d, -5px -5px 15px #323232;
+        border-radius: 20px;
+        padding: 60px;
+        width: 60%;
+        min-width: 500px;
+        max-width: 700px;
+    }
+
+    .form-control {
+        background-color: #fff;
+        color: #000;
+        border: 2px solid #555;
+        border-radius: 10px;
+        transition: all 0.3s ease-in-out;
+        font-size: 18px;
+        padding: 12px;
+    }
+
+        .form-control:focus {
+            border-color: #daa520;
+            box-shadow: 0 0 10px #daa520;
+            background-color: #333;
+            color: #fff;
+        }
+
+    .btn-warning {
+        background: #FAA652;
+        color: #fff;
+        border: none;
+        font-size: 20px;
+        padding: 15px;
+        width: 100%;
+        font-weight: bold;
+        border-radius: 12px;
+        transition: 0.3s;
+    }
+
+        .btn-warning:hover {
+            background: #FABF52;
+        }
+
+    h2 {
+        font-size: 32px;
+    }
+</style>
+
+<div class="login-container">
+    <div class="login-box text-center">
+        <h2 class="fw-bold text-warning mb-4">
+            Faça seu login
+        </h2>
+
+        @if (TempData["MensagemErro"] != null)
+        {
+            <div class="alert alert-danger text-dark" role="alert">
+                @TempData["MensagemErro"]
+            </div>
+        }
+
+        @if (TempData["MensagemSucesso"] != null)
+        {
+            <div class="alert alert-success text-dark" role="alert">
+                @TempData["MensagemSucesso"]
+            </div>
+        }
+
+        <form method="post" asp-controller="Home" asp-action="Login">
+            <div class="mb-4 text-start">
+                <label class="form-label fw-semibold fs-5">Email:</label>
+                <input type="email" class="form-control form-control-lg" asp-for="Email" placeholder="Digite seu email" required />
+                <span class="text-danger" asp-validation-for="Email"></span>
+            </div>
+
+            <div class="mb-4 text-start">
+                <label class="form-label fw-semibold fs-5">Senha:</label>
+                <input type="password" class="form-control form-control-lg" asp-for="Senha" placeholder="Digite sua senha" required />
+                <span class="text-danger" asp-validation-for="Senha"></span>
+            </div>
+
+            <button class="btn btn-warning" type="submit">
+                Entrar
+            </button>
+        </form>
     </div>
-}
-
-@if (TempData["MensagemSucesso"] != null)
-{
-    <div class="alert alert-success text-dark" role="alert">
-        @TempData["MensagemSucesso"]
-    </div>
-}
-
-
-
-<div class="container mt-5"> 
-    <form method="post" asp-controller="Home" asp-action="Login">
-        <div class="mb-3">
-            <label>Email:</label>
-            <input type="email" class="form-control" asp-for="Email" />
-            <span asp-validation-for="Email" class="text-danger"></span>
-        </div>
-
-        <div class="mb-3">
-            <label>Senha:</label>
-            <input type="password" class="form-control" asp-for="Senha" />
-            <span asp-validation-for="Senha" class="text-danger"></span>
-        </div>
-
-
-        <button type="submit" class="btn btn-warning text-center  w-100 mb-3" style="color:black; font-weight: bold">Entrar</button>
-    </form>
 </div>

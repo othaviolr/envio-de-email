@@ -1,49 +1,114 @@
 ﻿@model EmailModel
 
-
 @{
     Layout = "_LayoutDeslogada";
 }
 
+<style>
+    body {
+        background-color: #121212;
+        color: #fff;
+    }
 
-<div class="d-flex flex-column justify-content-center align-conter-center">
-    <div class="text-center">
-        <div style="height:300px" class="text-center mt-3 mb-5">
-            <img src="/img/program.jpg" style="width:100%; height: 100%" />
+    .home-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        min-height: 100vh;
+        padding-top: 8vh;
+        text-align: center;
+    }
+
+    .content-box {
+        background: linear-gradient(145deg, #1e1e1e, #292929);
+        box-shadow: 5px 5px 15px #0d0d0d, -5px -5px 15px #323232;
+        border-radius: 20px;
+        padding: 50px;
+        width: 70%;
+        min-width: 500px;
+        max-width: 1000px;
+    }
+
+    .form-control {
+        background-color: #fff;
+        color: #000;
+        border: 2px solid #555;
+        border-radius: 10px;
+        transition: all 0.3s ease-in-out;
+        font-size: 18px;
+        padding: 12px;
+    }
+
+        .form-control:focus {
+            border-color: #faa520;
+            box-shadow: 0 0 10px #daa520;
+            background-color: #333;
+            color: #fff;
+        }
+
+    .btn-warning {
+        background: #faa652;
+        color: #fff;
+        border: none;
+        font-size: 20px;
+        padding: 15px;
+        width: 100%;
+        font-weight: bold;
+        border-radius: 12px;
+        transition: 0.3s;
+    }
+
+        .btn-warning:hover {
+            background: #fabf52;
+        }
+
+    h2 {
+        font-size: 34px;
+        color: #faa652;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    p {
+        font-size: 20px;
+        color: #faa652;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    .image-container img {
+        width: 100%;
+        max-height: 450px;
+        object-fit: cover;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+</style>
+
+<div class="home-container">
+    <div class="content-box">
+        <div class="image-container mb-4">
+            <img src="/img/lee.jpg" class="img-fluid" />
         </div>
-    </div>
 
-    <div class="text-center">
-        <h2 style="color:darkorange; font-weight: bold">Desperte seu Potencial: Aprenda Programação de Forma Descomplicada!</h2>
-        <p class="text-center">
-            Você já pensou em desbravar o universo da programação, mas não sabe por onde começar? Seja para impulsionar sua carreira ou explorar novos horizontes, nosso curso de programação é a chave para desbloquear todo o seu potencial!
-            Insira abaixo seus dados para ter mais informações
-        </p>
-    </div>
-
-    <div>
+        <h2 class="fw-bold">Desperte seu Potencial</h2>
+        <p>Aprenda a tocar guitarra de forma descomplicada com o Lee Malia!</p>
 
         <form method="post" asp-controller="Home" asp-action="SalvarDadosCliente">
-            <div class="mb-3">
-                <label class ="form-label">Nome:</label>
-                <input type="text" class="form-control" asp-for="Nome" />
-                <span asp-validation-for="Nome"></span>
+            <div class="mb-4 text-start">
+                <label class="form-label fw-semibold fs-5">Nome:</label>
+                <input type="text" class="form-control form-control-lg" asp-for="Nome" placeholder="Digite seu nome" required />
+                <span class="text-danger" asp-validation-for="Nome"></span>
             </div>
 
-            <div class="mb-3">
-                <label class="form-label">Email:</label>
-                <input type="email" class="form-control" asp-for="Email" />
-                <span asp-validation-for="Email"></span>
+            <div class="mb-4 text-start">
+                <label class="form-label fw-semibold fs-5">Email:</label>
+                <input type="email" class="form-control form-control-lg" asp-for="Email" placeholder="Digite seu email" required />
+                <span class="text-danger" asp-validation-for="Email"></span>
             </div>
 
-            <button class="btn btn-success text-center w-100" style="color:black; font-weight:bold" type="submit">Enviar informações</button>
+            <button class="btn btn-warning" type="submit">
+                Enviar informações
+            </button>
         </form>
-
     </div>
-
 </div>
-
-
-
-
-
