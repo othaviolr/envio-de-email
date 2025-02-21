@@ -18,8 +18,9 @@ Este projeto tem como objetivo fornecer uma interface moderna e intuitiva para c
 
 Abaixo estão algumas capturas de tela da aplicação:
 
-![Tela de Cadastro](https://via.placeholder.com/800x400?text=Tela+de+Cadastro)  
-*(Adicione prints reais do sistema aqui para deixar o README mais atrativo!)*
+![Tela Pricipal] 
+![1](https://github.com/user-attachments/assets/a7404d67-8614-443e-9912-1047587ca7c4)
+
 
 ---
 
