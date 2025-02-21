@@ -25,9 +25,9 @@ Este projeto tem como objetivo fornecer uma interface moderna e intuitiva para c
 
 ## 📈 Melhorias Futuras
 
--📩 Implementar envio automático de e-mails para os cadastrados.  
--🎨 Melhorar a identidade visual com animações e microinterações.  
--📊 Adicionar painel administrativo para gerenciamento de cadastros.  
+- 📩 Implementar envio automático de e-mails para os cadastrados.  
+- 🎨 Melhorar a identidade visual com animações e microinterações.  
+- 📊 Adicionar painel administrativo para gerenciamento de cadastros.  
 
 ## 📌 Autor
 **Othavio**  
