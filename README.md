@@ -18,9 +18,20 @@ Este projeto tem como objetivo fornecer uma interface moderna e intuitiva para c
 
 Abaixo estão algumas capturas de tela da aplicação:
 
-![Tela Pricipal] 
+[Tela Pricipal]
 ![1](https://github.com/user-attachments/assets/a7404d67-8614-443e-9912-1047587ca7c4)
 
+[Tela de Cadastro] 
+![2](https://github.com/user-attachments/assets/ce1321b8-e0e3-4fb6-9ce6-5f9e7ce7eecf)
+
+[Tela de Login] 
+![3](https://github.com/user-attachments/assets/eaead0ff-d19d-4f32-95ee-f8cb578da2df)
+
+[Tela dos Emails solicitados] 
+![4](https://github.com/user-attachments/assets/15d71b51-0cee-49b1-bb6a-3b36e7995ad5)
+
+[Tela para Enviar Emails] 
+![5](https://github.com/user-attachments/assets/76ab62b8-b06b-42ff-8c9f-e320f9e2c6dc)
 
 ---
 
