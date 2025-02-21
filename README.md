@@ -1,4 +1,4 @@
-# 📧 Página de Coleta de E-mails com Vídeo
+# 📧 Página de Coleta de E-mails
 
 Este projeto tem como objetivo fornecer uma interface moderna e intuitiva para cadastro de usuários, coletando e-mails de forma eficiente. A aplicação foi desenvolvida utilizando **C# com ASP.NET**, priorizando um design escuro e elegante, com destaque para a experiência do usuário.
 
